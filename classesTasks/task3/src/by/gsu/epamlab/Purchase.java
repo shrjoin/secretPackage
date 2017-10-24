@@ -1,6 +1,6 @@
 package by.gsu.epamlab;
 
-public class Purchase {
+public class Purchase implements Comparable<Purchase> {
     private String productName;
     private int priceInBYN;
     private int numberOfPurchasedUnits;
@@ -65,7 +65,7 @@ public class Purchase {
                 productName, transferKopecksIntoRublesString(priceInBYN), numberOfPurchasedUnits, discountPercent, transferKopecksIntoRublesString(getCost()));
     }
 
-    private String transferKopecksIntoRublesString(int kopecks) {
+    public static String transferKopecksIntoRublesString(int kopecks) {
         String rubles = String.valueOf(kopecks);
         StringBuilder sb = new StringBuilder();
         switch (rubles.length()) {
@@ -82,5 +82,10 @@ public class Purchase {
                 sb.append(firstHalf).append(".").append(secondHalf);
                 return sb.toString();
         }
+    }
+
+    @Override
+    public int compareTo(Purchase p) {
+        return Integer.compare(this.numberOfPurchasedUnits, p.numberOfPurchasedUnits);
     }
 }

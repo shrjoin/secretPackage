@@ -30,7 +30,7 @@ public class Runner {
     private static void task2_OutputArrayContentToConsoleUsingShowMethod(BusinessTrip[] businessTripsArray) {
         Arrays.stream(businessTripsArray)
                 .filter(Objects::nonNull)
-                .forEach(BusinessTrip::showBusinessTripInformation);
+                .forEach(BusinessTrip::show);
     }
 
     private static BusinessTrip[] task3_UpdateEmployeeTransportationExpensesForLastObjectOfArray(BusinessTrip[] businessTripsArray) {

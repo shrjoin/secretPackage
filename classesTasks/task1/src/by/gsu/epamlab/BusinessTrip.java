@@ -3,13 +3,16 @@ package by.gsu.epamlab;
 import java.util.Random;
 
 public class BusinessTrip {
+    private static int accountIndex = 0;
+
     private static final int DAILY_ALLOWANCE_RATE_IN_BLR = 222;
     private String employeeAccount;
     private int transportationExpensesInBYN;
     private int numberOfDays;
 
     public BusinessTrip() {
-        this.employeeAccount = "EmployeeAccount_0";
+        this.employeeAccount = "EmployeeAccount_" + accountIndex;
+        accountIndex++;
         this.transportationExpensesInBYN = 111;
         this.numberOfDays = 1;
     }
@@ -63,26 +66,27 @@ public class BusinessTrip {
         }
     }
 
-    private String getTotalBusinessTripCost() {
+    private String getTotal() {
         int totalCost = transportationExpensesInBYN + DAILY_ALLOWANCE_RATE_IN_BLR * numberOfDays;
         return transferKopecksIntoRublesString(totalCost);
     }
 
-    public void showBusinessTripInformation() {
+    public void show() {
         System.out.println("Account = " + employeeAccount
                 + ",\ndaily allowance rate in BYN = " + transferKopecksIntoRublesString(DAILY_ALLOWANCE_RATE_IN_BLR)
                 + ",\ntransportation expenses in BYN = " + transferKopecksIntoRublesString(transportationExpensesInBYN)
                 + ",\nnumber of days = " + numberOfDays
-                + ",\ntotal business trip cost = " + getTotalBusinessTripCost() + ".\n");
+                + ",\ntotal business trip cost = " + getTotal() + ".\n");
     }
 
     @Override
     public String toString() {
-        return String.format("%s;%s;%s;%s", employeeAccount, transferKopecksIntoRublesString(transportationExpensesInBYN), numberOfDays, getTotalBusinessTripCost());
+        return String.format("%s;%s;%s;%s", employeeAccount, transferKopecksIntoRublesString(transportationExpensesInBYN), numberOfDays, getTotal());
     }
 
     public static BusinessTrip createRandomBusinessTrip() {
-        String employeeAccount = "EmployeeAccount_" + (new Random().nextInt(10) + 1);
+        String employeeAccount = "EmployeeAccount_" + accountIndex;
+        accountIndex++;
         int transportationExpensesInBYN = new Random().nextInt(100) + 100;
         int numberOfDays = new Random().nextInt(10) + 1;
 

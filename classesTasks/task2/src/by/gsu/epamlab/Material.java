@@ -1,13 +1,13 @@
 package by.gsu.epamlab;
 
 public class Material {
-    public enum Name {STEEL, COPPER, NON_NAME_MATERIAL}
+    public enum Name {STEEL, COPPER, UNKNOWN}
 
     private final Name name;
     private final double density;
 
     public Material() {
-        this.name = Name.NON_NAME_MATERIAL;
+        this.name = Name.UNKNOWN;
         this.density = chooseTheDensityOfTheMaterial(name);
     }
 
@@ -23,7 +23,7 @@ public class Material {
             case "copper":
                 return Name.COPPER;
             default:
-                return Name.NON_NAME_MATERIAL;
+                return Name.UNKNOWN;
         }
     }
     private int chooseTheDensityOfTheMaterial(Name materialName) {
